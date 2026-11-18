@@ -6,3 +6,52 @@ html { scroll-behavior: smooth; }
 body { @apply bg-ink text-white antialiased; }
 :focus-visible { outline: 2px solid #FDB45B; outline-offset: 2px; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+
+.gold-wave-divider-3{ max-height:150px;}
+.clients-engagements{padding-left: 0px;  padding-right: 0px;}
+.laptop-hero{ position:absolute; right:0px; }
+.hero-top{}
+.services {
+  position: relative;
+  overflow: hidden;
+}
+
+.services::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 300px;               /* adjust to your image */
+  height: 300px;              /* adjust to your image */
+  background: url("/left-pattern.png") no-repeat left bottom / contain;
+  pointer-events: none;       /* don't block clicks */
+  z-index: 0;
+}
+
+.services > * {
+  position: relative;
+  z-index: 1;                 /* keep content above the pattern */
+}
+
+.services::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 84px;               /* adjust to your image */
+  height: 145px;              /* adjust to your image */
+  background: url("/right-pattern.png") no-repeat left bottom / contain;
+  pointer-events: none;       /* don't block clicks */
+  z-index: 0; display:none;
+}
+.client-testimonials{ background:#fff;}
+.client-testimonials header p{ color:#000; }
+.client-testimonials h2{ color:#000;}
+.slider-btns button{ color:#000;}
+.slider-btns .bg-white{ background:#000;}
+.slider-btns [aria-current="false"]{ background:#D9D9D9;}
+.bg-gold svg.text-gold{ color:#080808; fill: #080808;}
+.technology-section{background: #fff;}
+.technology-section header p{ color:#000; }
+.technology-section h2{ color:#000;}
+.shadow{box-shadow: 0px 6.91748px 20.7524px rgba(0, 0, 0, 0.07);}

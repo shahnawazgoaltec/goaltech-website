@@ -5,7 +5,7 @@ import { services } from "@/data/content";
 
 export function ServicesSection({ showCta = true }: { showCta?: boolean }) {
   return (
-    <section id="services" className="bg-cream px-6 py-20">
+    <section id="services" className="bg-cream px-6 py-20 services">
       <SectionHeading eyebrow="WHAT WE DO" title="Comprehensive" accent="IT Solutions"
         subtitle="From ideation to deployment and beyond, we cover every layer of the modern technology stack." />
       <div className="mx-auto mt-12 grid max-w-page gap-5 md:grid-cols-2 lg:grid-cols-3">

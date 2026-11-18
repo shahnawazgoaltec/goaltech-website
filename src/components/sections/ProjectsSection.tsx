@@ -6,6 +6,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ButtonLink } from "@/components/ui/Button";
 import type { Project, ProjectCategory } from "@/lib/schemas";
 import { projectCategorySchema } from "@/lib/schemas";
+import Image from "next/image";
 
 const filters = ["All", ...projectCategorySchema.options] as const;
 type Filter = (typeof filters)[number];
@@ -43,7 +44,20 @@ export function ProjectsSection({ projects, showCta = true }: { projects: Projec
 function ProjectCard({ project: p }: { project: Project }) {
   return (
     <article id={p.slug} className="rounded-xl border border-gold bg-ink-card p-3">
-      <div className="h-36 rounded-md" style={{ background: `linear-gradient(135deg, ${p.accent}, #0b0b0d)` }} aria-hidden />
+
+      <div className="relative h-36 overflow-hidden rounded-md" style={{ background: p.accent }}>
+  {p.image && (
+    <Image
+      src={p.image}
+      alt={`${p.title} screenshot`}
+      fill
+      sizes="(min-width: 1024px) 380px, (min-width: 768px) 50vw, 100vw"
+      className="object-cover object-top"
+    />
+  )}
+</div>
+      
+      <div className=""  aria-hidden />
       <div className="p-3">
         <span className="inline-block rounded-full bg-white px-3 py-1 text-[11px] text-black">{p.tag}</span>
         <h3 className="mt-4 font-semibold">{p.title}</h3>

@@ -1,8 +1,18 @@
 import { clients } from "@/data/content";
+import Image from "next/image";
 
 export function ClientLogos() {
   return (
-    <section id="clients" className="bg-black px-6 pb-10 pt-8">
+       <section id="clients" className="bg-black px-6 pb-10 pt-8 clients-engagements">
+      <Image
+            src="/gold-wave-divider-3.jpg"
+            alt="Laptop showing code on screen"
+            width={800}
+            height={500}
+            priority
+            className="h-auto w-full gold-wave-divider-3"
+          />
+
       <h2 className="flex items-center justify-center gap-5 text-lg font-medium">
         <span className="h-px w-16 bg-gold" /> CLIENT ENGAGEMENTS <span className="h-px w-16 bg-gold" />
       </h2>

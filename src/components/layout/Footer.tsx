@@ -14,7 +14,10 @@ export function Footer() {
         <div className="max-w-sm">
           <Logo />
           <p className="mt-5 text-xs leading-relaxed text-white/90">{company.blurb}</p>
-          <p className="mt-6 flex items-center gap-3 text-xs"><Mail size={14} />{company.email}</p>
+          <p className="mt-6 flex items-center gap-3 text-xs">
+  <Mail size={14} aria-hidden />
+  <a href={`mailto:${company.email}`} className="hover:text-gold">{company.email}</a>
+</p>
           <p className="mt-3 flex items-center gap-3 text-xs"><MapPin size={14} />{company.address}</p>
         </div>
         <FooterColumn title="Quick Links" items={footerLinks.quick.map((l) => ({ label: l, href: l === "Home" ? "/" : `/${l.toLowerCase().replace(" ", "-")}` }))} />

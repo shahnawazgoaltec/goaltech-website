@@ -15,7 +15,7 @@ export function Header() {
     <header className="absolute inset-x-0 top-0 z-30">
       <div className="mx-auto flex max-w-page items-center justify-between px-6 py-5">
         <Logo />
-        <nav aria-label="Main" className="hidden items-center gap-8 text-sm lg:flex">
+        <nav aria-label="Main" className="hidden items-center gap-8 text-sm font-medium lg:flex">
           {navItems.map((item) => {
             const active = item.href === pathname;
             return (

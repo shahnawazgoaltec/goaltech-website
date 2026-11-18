@@ -13,8 +13,8 @@ export function Testimonials({ items }: { items: Testimonial[] }) {
   const shift = (d: number) => setPage((p) => (p + d + PAGES) % PAGES);
 
   return (
-    <section className="bg-black px-6 pb-8 pt-20">
-      <SectionHeading dark eyebrow="CLIENT TESTIMONIALS" title="What Our" accent="Clients Say" />
+    <section className="bg-black px-6 pb-8 pt-20 client-testimonials">
+      <SectionHeading dark eyebrow="CLIENT TESTIMONIALS" title="What Our" accent="Clients Say"  />
       <div className="mx-auto mt-12 grid max-w-page gap-5 md:grid-cols-3">
         {items.map((t) => (
           <figure key={t.name} className={`rounded-xl p-6 ${t.featured ? "bg-gold text-black" : "bg-ink-card"}`}>
@@ -30,7 +30,7 @@ export function Testimonials({ items }: { items: Testimonial[] }) {
           </figure>
         ))}
       </div>
-      <div className="mt-10 flex items-center justify-center gap-5">
+      <div className="mt-10 flex items-center justify-center gap-5 slider-btns">
         <button aria-label="Previous testimonials" onClick={() => shift(-1)}><ArrowLeft size={20} /></button>
         {Array.from({ length: PAGES }, (_, i) => (
           <button key={i} aria-label={`Go to page ${i + 1}`} aria-current={i === page} onClick={() => setPage(i)}

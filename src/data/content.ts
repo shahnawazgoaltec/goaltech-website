@@ -25,9 +25,9 @@ export const services = z.array(serviceSchema).parse([
 ]);
 
 export const projects = z.array(projectSchema).parse([
-  { slug: "dydonai", title: "DydonAI", tag: "AI Solution", categories: ["AI", "Web Dev"], stack: ["Python", "React JS"], accent: "#1E2A5E", description: "Empowering financial institutions with AI-driven ESG analytics, climate risk insights, and compliance." },
-  { slug: "cv-builder", title: "CV Builder", tag: "Web Application", categories: ["Web Dev", "AI"], stack: ["Vue JS", "Spring Boot"], accent: "#3B82F6", description: "Build professional, ATS-friendly resumes in minutes with AI assistance." },
-  { slug: "lovemebeauty", title: "LoveMeBeauty", tag: "E-commerce", categories: ["Web Dev", "UI/UX"], stack: ["PHP", "JavaScript"], accent: "#8B5A3C", description: "A modern e-commerce platform for beauty and wellness brands." },
+  { slug: "dydonai", title: "DydonAI", tag: "AI Solution", image: "/Dashboard-full-Single-Projects-1.jpg", categories: ["AI", "Web Dev"], stack: ["Python", "React JS"], accent: "#1E2A5E", image: "/Dashboard-full-Single-Projects-1.jpg", description: "Empowering financial institutions with AI-driven ESG analytics, climate risk insights, and compliance." },
+  { slug: "cv-builder", title: "CV Builder", tag: "Web Application", image: "/cv-builder.jpg", categories: ["Web Dev", "AI"], stack: ["Vue JS", "Spring Boot"], accent: "#3B82F6", description: "Build professional, ATS-friendly resumes in minutes with AI assistance." },
+  { slug: "lovemebeauty", title: "LoveMeBeauty", tag: "E-commerce", image: "/lovemebeauty.jpg", categories: ["Web Dev", "UI/UX"], stack: ["PHP", "JavaScript"], accent: "#8B5A3C", description: "A modern e-commerce platform for beauty and wellness brands." },
 ]);
 
 export const testimonials = z.array(testimonialSchema).parse([
@@ -37,9 +37,14 @@ export const testimonials = z.array(testimonialSchema).parse([
 ]);
 
 export const techStack = z.array(techSchema).parse([
-  { name: "Python", abbr: "Py" }, { name: "React", abbr: "Re" }, { name: "Node.js", abbr: "JS" },
-  { name: "Next.js", abbr: "N" }, { name: "AWS", abbr: "aws" }, { name: "Azure", abbr: "Az" },
-  { name: "Docker", abbr: "Dk" }, { name: "Kubernetes", abbr: "K8s" },
+  { name: "Python", abbr: "Py", image: "/tech/python.svg" },
+  { name: "React", abbr: "Re",  image: "/tech/react.svg" },
+  { name: "Node.js", abbr: "JS",  image: "/tech/java.svg" },
+  { name: "Next.js", abbr: "N" ,  image: "/tech/nextjs.svg"},
+  { name: "AWS", abbr: "aws" ,  image: "/tech/aws.svg" },
+  { name: "Azure", abbr: "Az",  image: "/tech/azure.svg" },
+  { name: "Docker", abbr: "Dk",  image: "/tech/docker.svg" },
+  { name: "Kubernetes", abbr: "K8s",  image: "/tech/kubernetes.svg" },
 ]);
 
 export const footerLinks = {

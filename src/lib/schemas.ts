@@ -20,6 +20,7 @@ export const projectSchema = z.object({
   categories: z.array(projectCategorySchema).min(1),
   stack: z.array(z.string()).min(1),
   accent: z.string().regex(/^#([0-9a-fA-F]{6})$/, "Must be a hex color"),
+  image: z.string().startsWith("/", "Image path must start with /").optional(),
 });
 
 export const testimonialSchema = z.object({
@@ -31,7 +32,11 @@ export const testimonialSchema = z.object({
   featured: z.boolean().default(false),
 });
 
-export const techSchema = z.object({ name: z.string(), abbr: z.string().max(4) });
+export const techSchema = z.object({
+  name: z.string(),
+  abbr: z.string().max(4),
+  image: z.string().startsWith("/", "Image path must start with /").optional(),
+});
 
 export const navItemSchema = z.object({ label: z.string(), href: z.string() });
 
