@@ -12,6 +12,13 @@ export const serviceSchema = z.object({
 
 export const projectCategorySchema = z.enum(["Web Dev", "Mobile App", "UI/UX", "DevOps", "AI"]);
 
+export const clientSchema = z.object({
+  name: z.string().min(1),
+  logo: z.string().startsWith("/", "Logo path must start with /"),
+});
+
+export type Client = z.infer<typeof clientSchema>;
+
 export const projectSchema = z.object({
   slug: z.string().min(1),
   title: z.string().min(1),

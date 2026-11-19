@@ -19,7 +19,7 @@ export function ProjectsSection({ projects, showCta = true }: { projects: Projec
   );
 
   return (
-    <section id="projects" className="bg-black px-6 py-20">
+    <section id="projects" className="bg-black px-6 py-20 project-section">
       <SectionHeading dark eyebrow="OUR PORTFOLIO" title="Our" accent="Projects"
         subtitle="A selection of work we are proud of — each one built with a specific business outcome in mind." />
 
@@ -43,7 +43,7 @@ export function ProjectsSection({ projects, showCta = true }: { projects: Projec
 
 function ProjectCard({ project: p }: { project: Project }) {
   return (
-    <article id={p.slug} className="rounded-xl border border-gold bg-ink-card p-3">
+    <article id={p.slug} className="rounded-xl border border-gold bg-ink-card p-3 project-article">
 
       <div className="relative h-36 overflow-hidden rounded-md" style={{ background: p.accent }}>
   {p.image && (

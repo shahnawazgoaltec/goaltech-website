@@ -33,7 +33,7 @@ export function Hero() {
         </div>
 
         {/* Laptop mock — swap for <Image src="/hero-laptop.png" /> when you have the asset */}
-        <div className="relative mx-auto w-full">
+        <div className="relative mx-auto w-full hero-image">
           <Image
             src="/laptop-hero.png"
             alt="Laptop showing code on screen"
@@ -42,7 +42,7 @@ export function Hero() {
             priority
             className="h-auto w-full laptop-hero1"
           />
-          <div className="absolute -bottom-8 left-8 rounded-lg bg-white px-4 py-3 text-center text-black shadow-xl">
+          <div className="absolute -bottom-8 left-8 rounded-lg bg-white px-4 py-3 text-center text-black shadow-xl ratings">
             <p className="text-xs">Client Satisfaction</p>
             <Stars rating={4} size={14} />
           </div>

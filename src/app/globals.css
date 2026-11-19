@@ -8,9 +8,11 @@ body { @apply bg-ink text-white antialiased; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
 
 .gold-wave-divider-3{ max-height:150px;}
-.clients-engagements{padding-left: 0px;  padding-right: 0px;}
+.clients-engagements{padding-left: 0px;  padding-right: 0px;padding-top: 0px;  margin-top: -30px;}
+.clients-engagements li img{max-height:26px;}
 .laptop-hero{ position:absolute; right:0px; }
-.hero-top{}
+.laptop-hero1{ border-radius:0px;}
+.hero-top{padding-bottom: 0px;height: 640px;}
 .services {
   position: relative;
   overflow: hidden;
@@ -55,3 +57,69 @@ body { @apply bg-ink text-white antialiased; }
 .technology-section header p{ color:#000; }
 .technology-section h2{ color:#000;}
 .shadow{box-shadow: 0px 6.91748px 20.7524px rgba(0, 0, 0, 0.07);}
+.technology-section li img{ transition: all 0.4s ease-in-out;}
+.technology-section li:hover img{transform: scale(1.04);}
+
+.project-article{transition: all 0.4s ease-in-out;}
+.project-article:hover{transform: scale(1.03);}
+.ratings{ bottom:50px; display:none;}
+
+.project-section{ position:relative;}
+
+.project-section::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 243px;               /* adjust to your image */
+  height: 83px;              /* adjust to your image */
+  background: url("/gold-lower-wave-right.jpg") no-repeat left bottom / contain;
+  pointer-events: none;       /* don't block clicks */
+  z-index: 0; 
+}
+
+.project-section::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 243px;               /* adjust to your image */
+  height: 83px;              /* adjust to your image */
+  background: url("/gold-lower-wave.jpg") no-repeat left bottom / contain;
+  pointer-events: none;       /* don't block clicks */
+  z-index: 0; 
+}
+
+.business-box{padding-right: 250px;  position: relative;}
+.business-box img{position: absolute;  right: 30px;  top: 0px; height:100%;}
+
+.marquee {
+  overflow: hidden;
+  /* fade the logos out at both edges */
+  mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+.marquee-track li:first-child img{ position:relative; top:-5px;}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+  .marquee { overflow-x: auto; }
+}
+
+.hero-image{ position:static;}
+.hero-image img{ position:absolute; right:0px; top:0px; max-width:800px; }

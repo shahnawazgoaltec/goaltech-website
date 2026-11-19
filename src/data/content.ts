@@ -1,6 +1,6 @@
 import { z } from "zod";
 import {
-  navItemSchema, serviceSchema, projectSchema, testimonialSchema, techSchema,
+  navItemSchema, serviceSchema, projectSchema, testimonialSchema, techSchema, clientSchema,
 } from "@/lib/schemas";
 
 // Every collection is parsed with Zod, so malformed content fails loudly at build time.
@@ -13,7 +13,13 @@ export const navItems = z.array(navItemSchema).parse([
   { label: "Contact", href: "/contact" },
 ]);
 
-export const clients = ["accenture", "Capgemini", "DYDON AI", "tcs", "Deloitte."];
+export const clients = z.array(clientSchema).parse([
+  { name: "Accenture", logo: "/clients/accenture-1.svg" },
+  { name: "Capgemini", logo: "/clients/capgemini.svg" },
+  { name: "Dydon AI", logo: "/clients/dydon-logo.svg" },
+  { name: "TCS", logo: "/clients/tcs.svg" },
+  { name: "Deloitte", logo: "/clients/deloitte.svg" },
+]);
 
 export const services = z.array(serviceSchema).parse([
   { slug: "web-development", title: "Web Development", icon: "globe", description: "Custom web applications built with modern frameworks, optimized for performance and scalability." },
@@ -32,8 +38,11 @@ export const projects = z.array(projectSchema).parse([
 
 export const testimonials = z.array(testimonialSchema).parse([
   { quote: "GoalTec delivered an exceptional AI-driven compliance system that transformed our operations. Their technical expertise and commitment to quality truly set them apart.", name: "Sarah Johnson", role: "CTO", company: "DydonAI", rating: 5 },
-  { quote: "Working with GoalTec was a smooth experience from start to finish. They understood our complex requirements and delivered a robust solution that exceeded our expectations.", name: "Mark Williams", role: "Project Manager", company: "Sainsbury", rating: 5, featured: true },
-  { quote: "GoalTec helped us build our e-commerce platform from the ground up. Their attention to detail and responsive communication made the entire process seamless.", name: "Jennifer Lee", role: "CEO", company: "LoveMeBeauty", rating: 5 },
+  { quote: "Working with GoalTec was a smooth experience from start to finish. They understood our complex requirements and delivered a robust solution that exceeded our expectations.", name: "Mark Williams", role: "Project Manager", company: "Sainsbury", rating: 5 },
+  { quote: "GoalTec helped us build our e-commerce platform from the ground up. Their attention to detail and responsive communication made the entire process seamless.", name: "Jennifer Lee", role: "CEO", company: "LoveMeBeauty", rating: 4},
+  { quote: "The team at GoelTec demonstrated exceptional technical knowledge and problem-solving skills. They delivered our knowledge management platform ahead of schedule and within budget.", name: "David Chen", role: "Director", company: "Thinkfully", rating: 4},
+  { quote: "Partnering with GoalTec was seamless from beginning to end. They grasped our intricate requirements right away and built a reliable solution that went well beyond what we anticipated.", name: "Mark Waugh", role: "Manager", company: "Sainsbury", rating: 4},
+  { quote: "We had a fantastic, hassle-free experience working with GoalTec. They really took the time to understand our complex needs and delivered a solid solution that blew us away.", name: "Jet Lee", role: "COO", company: "Finance", rating: 4 },
 ]);
 
 export const techStack = z.array(techSchema).parse([
