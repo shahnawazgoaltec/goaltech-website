@@ -38,14 +38,16 @@ body { @apply bg-ink text-white antialiased; }
 .services::after {
   content: "";
   position: absolute;
-  top: 0;
-  right: 0;
-  width: 84px;               /* adjust to your image */
-  height: 145px;              /* adjust to your image */
-  background: url("/right-pattern.png") no-repeat left bottom / contain;
+  top: 50px;
+  right: -120px;
+  width: 230px;               /* adjust to your image */
+  height: 230px;              /* adjust to your image */
+  background: url("/right-pattern2.png") no-repeat left bottom / contain;
   pointer-events: none;       /* don't block clicks */
-  z-index: 0; display:none;
+  z-index: 0; 
 }
+.services article{box-shadow: 0px 9.68447px 27.6699px rgba(0, 0, 0, 0.06);transition: all 0.4s ease-in-out;}
+.services article:hover{  transform: translateY(-10px);}
 .client-testimonials{ background:#fff;}
 .client-testimonials header p{ color:#000; }
 .client-testimonials h2{ color:#000;}
@@ -63,6 +65,15 @@ body { @apply bg-ink text-white antialiased; }
 .project-article{transition: all 0.4s ease-in-out;}
 .project-article:hover{transform: scale(1.03);}
 .ratings{ bottom:50px; display:none;}
+
+footer a{transition: all 0.4s ease-in-out;}
+footer a:hover{transition: all 0.4s ease-in-out;}
+
+header a{transition: all 0.4s ease-in-out;}
+header a:hover{transition: all 0.4s ease-in-out;}
+
+main a{transition: all 0.4s ease-in-out;}
+main a:hover{transition: all 0.4s ease-in-out;}
 
 .project-section{ position:relative;}
 
