@@ -28,6 +28,7 @@ export const projectSchema = z.object({
   stack: z.array(z.string()).min(1),
   accent: z.string().regex(/^#([0-9a-fA-F]{6})$/, "Must be a hex color"),
   image: z.string().startsWith("/", "Image path must start with /").optional(),
+  url: z.string().url("Must be a full URL, e.g. https://example.com"),
 });
 
 export const testimonialSchema = z.object({

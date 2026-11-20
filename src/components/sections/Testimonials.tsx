@@ -1,4 +1,3 @@
-
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
@@ -87,10 +86,10 @@ export function Testimonials({ items }: { items: Testimonial[] }) {
               >
                 <figure
                   className={`h-full rounded-xl p-6 transition-transform duration-300 hover:-translate-y-1 motion-reduce:transition-none ${
-                    t.featured ? "bg-gold text-black" : "bg-ink-card"
+                    i % 2 === 1 ? "bg-gold text-black" : "bg-ink-card"
                   }`}
                 >
-                  <Stars rating={t.rating} />
+                  <Stars rating={t.rating} className={i % 2 === 1 ? "fill-black text-black" : "fill-white text-white"} />
                   <blockquote className="mt-4 min-h-[8rem] text-sm leading-relaxed">“{t.quote}”</blockquote>
                   <figcaption className="mt-6 flex items-center gap-3">
                     <span className="grid h-10 w-10 place-items-center rounded-full bg-white/20 text-xs font-semibold">
@@ -98,7 +97,7 @@ export function Testimonials({ items }: { items: Testimonial[] }) {
                     </span>
                     <span>
                       <span className="block font-semibold">{t.name}</span>
-                      <span className={`text-xs ${t.featured ? "text-black/70" : "text-white/70"}`}>
+                      <span className={`text-xs ${i % 2 === 1 ? "text-black/70" : "text-white/70"}`}>
                         {t.role} • {t.company}
                       </span>
                     </span>
