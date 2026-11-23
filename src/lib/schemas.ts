@@ -40,6 +40,15 @@ export const testimonialSchema = z.object({
   featured: z.boolean().default(false),
 });
 
+export const aboutPillarSchema = z.object({
+  title: z.string().min(1),
+  description: z.string().min(10),
+  icon: z.enum(["target", "lightbulb", "users"]),
+});
+
+export type AboutPillar = z.infer<typeof aboutPillarSchema>;
+
+
 export const techSchema = z.object({
   name: z.string(),
   abbr: z.string().max(4),
@@ -57,11 +66,15 @@ export type NavItem = z.infer<typeof navItemSchema>;
 
 /* ---------- Contact form schema (shared by client + API route) ---------- */
 export const contactSchema = z.object({
-  name: z.string().trim().min(2, "Please enter your name"),
+  name: z.string().trim().min(2, "Please enter your full name"),
   email: z.string().trim().email("Enter a valid email address"),
+  phone: z
+    .string()
+    .trim()
+    .regex(/^\+?[\d\s()-]{7,20}$/, "Enter a valid phone number")
+    .optional()
+    .or(z.literal("")),
   company: z.string().trim().max(100).optional().or(z.literal("")),
-  service: serviceIconSchema.or(z.literal("other")),
-  message: z.string().trim().min(20, "Tell us a little more (at least 20 characters)").max(2000),
+  subject: z.string().trim().min(3, "Please enter a subject").max(150),
+  message: z.string().trim().min(20, "Tell us a little more (at least 20 characters)").max(1500),
 });
-
-export type ContactInput = z.infer<typeof contactSchema>;

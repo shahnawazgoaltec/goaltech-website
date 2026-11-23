@@ -5,7 +5,7 @@ import {
   projectSchema,
   testimonialSchema,
   techSchema,
-  clientSchema,
+  clientSchema,aboutPillarSchema,
 } from "@/lib/schemas";
 
 // Every collection is parsed with Zod, so malformed content fails loudly at build time.
@@ -14,7 +14,7 @@ export const navItems = z.array(navItemSchema).parse([
   { label: "Services", href: "/services" },
   { label: "Projects", href: "/projects" },
   { label: "Clients", href: "/#clients" },
-  { label: "About Us", href: "/#about" },
+  { label: "About Us", href: "/about" },
   { label: "Contact", href: "/contact" },
 ]);
 
@@ -74,7 +74,7 @@ export const services = z.array(serviceSchema).parse([
 export const projects = z.array(projectSchema).parse([
   {
     slug: "dydonai",    title: "DydonAI",    tag: "AI Solution",    image: "/Dashboard-full-Single-Projects-1.jpg",    categories: ["AI", "Web Dev"],    stack: ["Nuxt Js", "Spring Boot"],
-    accent: "#1E2A5E",    image: "/Dashboard-full-Single-Projects-1.jpg", url: "https://dydon.ai",   description: "Empowering financial institutions with AI-driven ESG analytics, climate risk insights, and compliance.",  
+    accent: "#1E2A5E",     url: "https://dydon.ai",   description: "Empowering financial institutions with AI-driven ESG analytics, climate risk insights, and compliance.",  
   },
   
   {
@@ -173,3 +173,13 @@ export const company = {
   blurb:
     "Passionate IT service provider with extensive experience in software development, web applications, and digital transformation.",
 };
+
+
+export const aboutIntro =
+  "We are passionate technology enthusiasts dedicated to delivering innovative IT solutions that drive business growth and digital transformation.";
+
+export const aboutPillars = z.array(aboutPillarSchema).parse([
+  { icon: "target", title: "Our Mission", description: "To bridge the gap between cutting-edge technology and practical business solutions, empowering organizations to thrive in the digital age." },
+  { icon: "lightbulb", title: "Our Vision", description: "To become the leading technology partner that transforms businesses through innovative solutions, creative thinking, and unwavering commitment to excellence." },
+  { icon: "users", title: "Our Values", description: "Innovation, quality, and partnership form the foundation of everything we do, ensuring we deliver solutions that exceed expectations." },
+]);

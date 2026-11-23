@@ -1,17 +1,20 @@
 "use client";
 import { useState } from "react";
+import { Send } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { contactSchema, type ContactInput } from "@/lib/schemas";
-import { services } from "@/data/content";
 
 type Errors = Partial<Record<keyof ContactInput, string>>;
 type Status = "idle" | "sending" | "sent" | "error";
 
-const field = "mt-1 w-full rounded-lg border border-ink-line bg-ink-card px-4 py-3 text-sm focus:border-gold focus:outline-none";
+const MAX_MESSAGE = 1500;
+const input =
+  "mt-2 w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30";
 
 export function ContactForm() {
   const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<Status>("idle");
+  const [count, setCount] = useState(0);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -26,9 +29,14 @@ export function ContactForm() {
     setErrors({});
     setStatus("sending");
     try {
-      const res = await fetch("/api/contact", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(parsed.data) });
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(parsed.data),
+      });
       if (!res.ok) throw new Error();
       setStatus("sent");
+      setCount(0);
       form.reset();
     } catch {
       setStatus("error");
@@ -36,33 +44,82 @@ export function ContactForm() {
   }
 
   if (status === "sent") {
-    return <p role="status" className="rounded-xl border border-gold p-6 text-sm">Thanks — we received your message and will reply within one business day.</p>;
+    return (
+      <p role="status" className="rounded-xl border border-gold bg-gold/10 p-6 text-sm text-gray-900">
+        Thanks — we received your message and will reply within one business day.
+      </p>
+    );
   }
 
   return (
-    <form onSubmit={onSubmit} noValidate className="space-y-5">
-      <Field label="Name" error={errors.name}><input name="name" className={field} autoComplete="name" /></Field>
-      <Field label="Work email" error={errors.email}><input name="email" type="email" className={field} autoComplete="email" /></Field>
-      <Field label="Company (optional)" error={errors.company}><input name="company" className={field} autoComplete="organization" /></Field>
-      <Field label="What do you need help with?" error={errors.service}>
-        <select name="service" className={field} defaultValue="other">
-          {services.map((s) => <option key={s.slug} value={s.icon}>{s.title}</option>)}
-          <option value="other">Something else</option>
-        </select>
+    <form onSubmit={onSubmit} noValidate className="space-y-6">
+      <div className="grid gap-6 md:grid-cols-2">
+        <Field label="Full Name" required error={errors.name} htmlFor="name">
+          <input id="name" name="name" className={input} autoComplete="name" />
+        </Field>
+        <Field label="Email Address" required error={errors.email} htmlFor="email">
+          <input id="email" name="email" type="email" className={input} autoComplete="email" />
+        </Field>
+      </div>
+
+      <div className="grid gap-6 md:grid-cols-2">
+        <Field label="Phone Number" error={errors.phone} htmlFor="phone">
+          <input id="phone" name="phone" type="tel" className={input} autoComplete="tel" />
+        </Field>
+        <Field label="Company" error={errors.company} htmlFor="company">
+          <input id="company" name="company" className={input} autoComplete="organization" />
+        </Field>
+      </div>
+
+      <Field label="Subject" required error={errors.subject} htmlFor="subject">
+        <input id="subject" name="subject" className={input} />
       </Field>
-      <Field label="Message" error={errors.message}><textarea name="message" rows={5} className={field} /></Field>
-      {status === "error" && <p role="alert" className="text-sm text-red-400">We couldn’t send your message. Check your connection and try again.</p>}
-      <Button type="submit" disabled={status === "sending"}>{status === "sending" ? "Sending…" : "Send message"}</Button>
+
+      <Field
+        label="Message"
+        required
+        error={errors.message}
+        htmlFor="message"
+        hint={`(${count}/${MAX_MESSAGE})`}
+      >
+        <textarea
+          id="message"
+          name="message"
+          rows={6}
+          maxLength={MAX_MESSAGE}
+          onChange={(e) => setCount(e.target.value.length)}
+          className={input}
+        />
+      </Field>
+
+      {status === "error" && (
+        <p role="alert" className="text-sm text-red-600">
+          We couldn’t send your message. Check your connection and try again.
+        </p>
+      )}
+
+      <Button type="submit" disabled={status === "sending"}>
+        <Send size={16} aria-hidden />
+        {status === "sending" ? "Sending…" : "Send Message"}
+      </Button>
     </form>
   );
 }
 
-function Field({ label, error, children }: { label: string; error?: string; children: React.ReactNode }) {
+function Field({
+  label, required, hint, error, htmlFor, children,
+}: {
+  label: string; required?: boolean; hint?: string; error?: string; htmlFor: string; children: React.ReactNode;
+}) {
   return (
-    <label className="block text-sm">
-      {label}
+    <div>
+      <label htmlFor={htmlFor} className="block text-sm font-medium text-gray-700">
+        {label}
+        {required && <span aria-hidden> *</span>}
+        {hint && <span className="ml-1 text-xs font-normal text-gray-400">{hint}</span>}
+      </label>
       {children}
-      {error && <span role="alert" className="mt-1 block text-xs text-red-400">{error}</span>}
-    </label>
+      {error && <p role="alert" className="mt-1 text-xs text-red-600">{error}</p>}
+    </div>
   );
 }
